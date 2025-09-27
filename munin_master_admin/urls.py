@@ -1,7 +1,8 @@
-from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.urls import path, include
 
-urlpatterns = patterns('',
-	url(r'^',         include('munin.urls')),
-	url(r'accounts/', include('django.contrib.auth.urls')),
-)
+urlpatterns = [
+    path('', include('munin.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
+]

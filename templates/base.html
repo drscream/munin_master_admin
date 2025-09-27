@@ -4,42 +4,42 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{% block title %}Munin{% endblock %}</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		{% load django_bootstrap5 %}
+		{% bootstrap_css %}
 		<style>
 		body {
-		  padding-top: 50px;
+		  padding-top: 80px;
 		}
 		</style>
 		{% block extrahead %}{% endblock %}
 	</head>
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="{% url 'main' %}">Munin Admin</a>
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-							<li><a href="{% url 'host_list' %}">Hosts</a></li>
-							<li><a href="{% url 'group_list' %}">Groups</a></li>
+				<a class="navbar-brand" href="{% url 'main' %}">Munin Admin</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item"><a class="nav-link" href="{% url 'host_list' %}">Hosts</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'group_list' %}">Groups</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="navbar-nav">
 						{% if user.is_authenticated %}
-							<li><a href="{% url "password_change" %}">Logged in as <strong>{{ user.username }}</strong></a></li>
-							<li><a href="{% url "logout" %}?next=/">Logout</a></li>
+							<li class="nav-item"><a class="nav-link" href="{% url 'password_change' %}">Logged in as <strong>{{ user.username }}</strong></a></li>
+							<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next=/">Logout</a></li>
 						{% else %}
-							<li><a href="{% url "login" %}">Login</a></li>
+							<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
 						{% endif %}
-							<li><a href="/">Back to Munin</a></li>
+							<li class="nav-item"><a class="nav-link" href="/">Back to Munin</a></li>
 					</ul>
 				</div>
 			</div>
-		</div>
+		</nav>
 		<div class="container">
 			{% block content %}{% endblock %}
 		</div>
-		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		{% bootstrap_javascript %}
 	</body>
 </html>
