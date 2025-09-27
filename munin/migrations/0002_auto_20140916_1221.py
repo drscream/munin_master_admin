@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='host',
             name='group',
-            field=models.ForeignKey(blank=True, to='munin.Group', null=True),
+            field=models.ForeignKey(blank=True, to='munin.Group', null=True, on_delete=models.SET_NULL),
         ),
     ]

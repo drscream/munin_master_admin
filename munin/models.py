@@ -12,5 +12,8 @@ class Group(models.Model):
 
 class Host(models.Model):
 	name=models.CharField(max_length=default_length, unique=True)
-	group=models.ForeignKey(Group,null=True,blank=True)
+	group=models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True)
+
+	def __str__(self):
+		return self.name
 

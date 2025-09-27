@@ -1,0 +1,10 @@
+# Django Web Framework
+Django>=5.2.6,<5.3
+
+# Bootstrap 5 integration for Django
+django-bootstrap5>=25.2
+
+# Development dependencies (optional)
+# Uncomment if needed for development
+# django-debug-toolbar>=4.0
+# pytest-django>=4.5
